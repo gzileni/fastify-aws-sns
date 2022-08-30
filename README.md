@@ -23,6 +23,14 @@ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 export AWS_DEFAULT_REGION=us-west-2
 ```
 
+### Custom Environments
+
+- *AWS_TOPIC_NAME*: AWS SNS Topic Name
+
+```bash
+export AWS_TOPIC_NAME=myTopic
+```
+
 ## Usage
 
 Require `fastify-aws-sns` and register.
@@ -43,14 +51,14 @@ To create, list, and delete Amazon SNS topics, and to handle topic attributes
 
 Options|Method|Optional|Default value|Description
 :---|:---|:---|:---|:---
-*topic*|create|no| | 
+*topic*|create|yes|process.env.AWS_TOPIC_NAME| 
 *topicArn*|list, del, getAttributes, setAttributes|no| |
 *attributeName*|setAttributes|no| |
 *attributeValue*|setAttributes|no| |
 
 ### fastify.snsTopics.create(options)
 
-To create an Amazon SNS topic
+To create an Amazon SNS topic and return topicArn
 
 ```js
 
