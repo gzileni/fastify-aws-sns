@@ -1,6 +1,6 @@
 {
   "name": "fastify-aws-sns",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fastify plugin to AWS Simple Notification Service (AWS SNS) to coordinates and manages the delivery or sending of messages to subscribing endpoints or clients",
   "main": "index.js",
   "directories": {
