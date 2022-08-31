@@ -176,9 +176,12 @@ Options|Method|Optional|Default value|Description
 :---|:---|:---|:---|:---
 *topicArn*|list, setByEMail, confirmSubscriptionByEMail, setByEndPoint, setByLambda|no| |
 *topicSubscriptionArn*|unsubscribe|no| |
-*email*|setByEMail|no| |
+*email*|setByEMail, setByEMailJSON|no| |
 *token*|confirmSubscriptionByEMail|no| |
-*endPointArn*|setByEndPoint|no| |
+*endPointArn*|setByEndPoint, setBySQS|no| |
+*phoneNumber*|setBySMS|no| |
+*roleArn*|setByFireHose|no| |
+*endPoint*|setByHttp, setByHttps|no| |
 *lambdaArn*|setByLambda|no| |
 
 ### fastify.snsSubscriptions.list(options)
@@ -280,6 +283,103 @@ fastify.snsSubscriptions.unsubscribe({
     console.error(e)
 })
 
+```
+
+### fastify.snsSubscriptions.setByHttp(options)
+
+to subscribe an HTTP Endpoint so it receives notifications from an Amazon SNS topic
+
+```js
+
+fastify.snsSubscriptions.setByHttp({
+    endPoint: 'http://www.myserver.com/',
+    topicArn: 'xxx:xxxx:xxxxxx'
+}).then(result => {
+    console.log(result)
+}).catch(e => {
+    console.error(e)
+})
+
+```
+
+### fastify.snsSubscriptions.setByHttps(options)
+
+to subscribe an HTTPs Endpoint so it receives notifications from an Amazon SNS topic
+
+```js
+
+fastify.snsSubscriptions.setByHttps({
+    endPoint: 'https://www.myserver.com/',
+    topicArn: 'xxx:xxxx:xxxxxx'
+}).then(result => {
+    console.log(result)
+}).catch(e => {
+    console.error(e)
+})
+```
+
+### fastify.snsSubscriptions.setByFireHose(options)
+
+to subscribe an AWS Kinesis Data FireHose so it receives notifications from an Amazon SNS topic
+
+```js
+fastify.snsSubscriptions.setByFireHose({
+    endPointArn: 'xxx:xxxx:xxxxxx',
+    topicArn: 'xxx:xxxx:xxxxxx',
+    roleArn: 'xxx:xxxx:xxxxxx'
+}).then(result => {
+    console.log(result)
+}).catch(e => {
+    console.error(e)
+})
+```
+
+### fastify.snsSubscriptions.setByEMailJSON(options)
+
+to subscribe an email address to delivery of JSON-encoded message via SMTP that it receives from an Amazon SNS topic
+
+```js
+
+fastify.snsSubscriptions.setByEMailJSON({
+    topicArn: 'xxx:xxxx:xxxxxx',
+    email: 'giuseppe.zileni@gmail.com'
+}).then(result => {
+    // token to send confirmSubscriptionByEMail method
+    console.log(result)
+}).catch(e => {
+    console.error(e)
+})
+
+```
+
+### fastify.snsSubscriptions.setBySQS(options)
+
+to subscribe an email address to delivery of JSON-encoded message to an Amazon SQS queue that it receives from an Amazon SNS topic
+
+```js
+fastify.snsSubscriptions.setBySQS({
+    endPointArn: 'xxx:xxxx:xxxxxx',
+    topicArn: 'xxx:xxxx:xxxxxx'
+}).then(result => {
+    console.log(result)
+}).catch(e => {
+    console.error(e)
+})
+```
+
+### fastify.snsSubscriptions.setBySMS(options)
+
+to subscribe an email address delivery of message via SMS to an phone number that it receives from an Amazon SNS topic
+
+```js
+fastify.snsSubscriptions.setBySMS({
+    phoneNumber: '353861230764',
+    topicArn: 'xxx:xxxx:xxxxxx'
+}).then(result => {
+    console.log(result)
+}).catch(e => {
+    console.error(e)
+})
 ```
 
 ## SMS
