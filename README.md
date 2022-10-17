@@ -218,13 +218,13 @@ fastify.snsSubscriptions.setByEMail({
 
 ```
 
-#### fastify.snsSubscriptions.confirmSubscriptionByEMail(options)
+#### fastify.snsSubscriptions.confirmSubscription(options)
 
-to verify an endpoint owner's intent to receive emails by validating the token sent to the endpoint by a previous subscribe action
+to verify an endpoint owner's intent validating the token sent to the endpoint by a previous subscribe action
 
 ```js
 
-fastify.snsSubscriptions.confirmSubscriptionByEMail({
+fastify.snsSubscriptions.confirmSubscription({
     token: 'xxx:xxxx:xxxxxx',
     topicArn: 'xxx:xxxx:xxxxxx'
 }).then(result => {
